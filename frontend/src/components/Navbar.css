@@ -1,0 +1,100 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+}
+.navbar-logo .logo-icon {
+  font-size: 30px;
+  color: #1db954;
+  animation: float 3s ease-in-out infinite;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar-center a {
+  padding: 8px 18px;
+  color: #a0a0b8;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.navbar-center a:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.06);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+.user-badge:hover { background: rgba(255,255,255,0.1); }
+
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1db954, #4a4aff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .navbar-center { display: none; }
+  .navbar-inner { padding: 0 16px; }
+}

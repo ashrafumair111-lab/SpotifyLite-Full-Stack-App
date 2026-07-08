@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="140" viewBox="0 0 640 140" role="img" aria-label="SpotifyLite typing animation">
+  <defs>
+    <clipPath id="reveal">
+      <rect x="0" y="0" width="0" height="140">
+        <animate attributeName="width"
+                 values="0;420;420;0"
+                 keyTimes="0;0.55;0.9;1"
+                 dur="5s"
+                 repeatCount="indefinite" />
+      </rect>
+    </clipPath>
+  </defs>
+
+  <!-- background -->
+  <rect width="640" height="140" fill="#0d1117" />
+
+  <!-- animated title: letters appear one by one -->
+  <g clip-path="url(#reveal)">
+    <text x="30" y="80"
+          font-family="'Courier New', ui-monospace, monospace"
+          font-size="58"
+          font-weight="bold"
+          fill="#1DB954"
+          letter-spacing="2">SpotifyLite</text>
+  </g>
+
+  <!-- blinking + moving typewriter cursor -->
+  <rect x="30" y="34" width="6" height="58" fill="#1DB954">
+    <animate attributeName="x"
+             values="30;420;420;30"
+             keyTimes="0;0.55;0.9;1"
+             dur="5s"
+             repeatCount="indefinite" />
+    <animate attributeName="opacity"
+             values="1;0;1;1;0;1"
+             dur="1s"
+             repeatCount="indefinite" />
+  </rect>
+
+  <!-- static subtitle -->
+  <text x="32" y="118"
+        font-family="'Courier New', ui-monospace, monospace"
+        font-size="18"
+        fill="#8b949e"
+        letter-spacing="1">MERN Stack • Spotify Clone</text>
+</svg>
