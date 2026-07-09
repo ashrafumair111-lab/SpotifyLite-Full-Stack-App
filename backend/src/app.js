@@ -5,10 +5,15 @@ const musicrouter = require("./routes/music.routes");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-// CORS configuration - critical for cookies to work
+// CORS configuration - critical for cookies to work.
+// Allow origins from CLIENT_URL (comma-separated) with localhost fallback for local dev.
+const allowedOrigins = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.split(",").map((o) => o.trim())
+  : ["http://localhost:5173", "http://localhost:3000"];
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"],
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
@@ -16,6 +21,11 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+
+// Health-check endpoint used by Render's healthCheckPath: "/"
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Spotify MERN backend is running" });
+});
 
 app.use("/api/auth", authrouter);
 app.use("/api/music", musicrouter);
