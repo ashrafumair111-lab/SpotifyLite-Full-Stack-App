@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_BASE = '/api';
+// In production, Vercel has no dev proxy, so point at the deployed backend.
+// Set VITE_API_URL in Vercel (e.g. https://<service>.onrender.com/api).
+// Falls back to "/api" for local dev (handled by the Vite proxy).
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE,
