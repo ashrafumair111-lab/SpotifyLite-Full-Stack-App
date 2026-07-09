@@ -2,6 +2,10 @@ const usermodel=require("../models/user.model")
 const jsonwebtoken=require("jsonwebtoken")
 const bcryptjs=require('bcryptjs')
 
+const isProd = process.env.NODE_ENV === 'production';
+// Cross-origin cookie auth needs SameSite=None + Secure in production.
+const cookieOpts = { httpOnly: true, sameSite: isProd ? 'none' : 'lax', secure: isProd, path: '/' };
+
 
 
 
@@ -29,7 +33,7 @@ async function register(req,res){
     id:newuser._id,
     role:newuser.role
    },process.env.jwts)
-   res.cookie("token",token);
+   res.cookie("token", token, cookieOpts);
    res.status(201).json({
     message:"successfully registered",
     newuser:{
@@ -64,7 +68,7 @@ async function loginuser(req,res){
         id:user._id,
         role:user.role
     },process.env.jwts)
-    res.cookie("token",token)
+    res.cookie("token", token, cookieOpts)
 res.status(200).json({
     message:"login successfull",
     user:{
@@ -79,7 +83,7 @@ res.status(200).json({
 
 }
 async function logout(req,res){
-    res.clearCookie("token");
+    res.clearCookie("token", cookieOpts);
     res.status(200).json({
         message:"logout successfully"
     })

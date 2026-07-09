@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://spotifylite-full-stack-app.onrender.com/api/:path*"
-    }
-  ]
-}

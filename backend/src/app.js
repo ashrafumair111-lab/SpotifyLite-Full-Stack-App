@@ -5,15 +5,12 @@ const musicrouter = require("./routes/music.routes");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-// CORS configuration - critical for cookies to work.
-// Allow origins from CLIENT_URL (comma-separated) with localhost fallback for local dev.
-const allowedOrigins = process.env.CLIENT_URL
-  ? process.env.CLIENT_URL.split(",").map((o) => o.trim())
-  : ["http://localhost:5173", "http://localhost:3000"];
-
+// CORS: reflect the request Origin (origin: true) so the frontend, served from
+// any Vercel/Render URL, can call this API with credentials (cookies). Cross-origin
+// cookie auth requires the Allow-Origin to mirror the actual request origin.
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: true,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// In production, Vercel has no dev proxy, so point at the deployed backend.
-// Set VITE_API_URL in Vercel (e.g. https://<service>.onrender.com/api).
+// In production the frontend calls the deployed backend directly (cross-origin).
+// Override with VITE_API_URL if the backend URL ever changes.
 // Falls back to "/api" for local dev (handled by the Vite proxy).
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://spotifylite-full-stack-app.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE,
